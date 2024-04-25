@@ -17,25 +17,9 @@ body {
 
 </style>
 </head>
-<body>
 
-<?php
-include 'headerbar.php';
-?>
-
-<div class = "row">
-
-
-  <?php
-  include 'left_sidebar.php';
-  ?>
-
-  <div class = "column centre">
+<div class = "column left">
+  <a href="mainpage.php" class = "button">MainPage </a> 
+  <a href="fuckyiuexample.php" class = "button">create2 </a> 
+  <a href="fuckyiuexample.php" class = "button">create3 </a> 
   </div>
-
-  <div class = "column right">
-  </div>
-</div>
-
-</body>
-</html> 

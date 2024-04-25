@@ -23,10 +23,9 @@ body {
 </head>
 <body>
 
-<div class = "headerbar">
-<h1>Website</h1>
-<p>This Is an example For All The Pages.</p>
-</div>
+<?php
+include 'headerbar.php';
+?>
 
 
 <div class = "login_box">
