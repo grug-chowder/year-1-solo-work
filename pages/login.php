@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Page Title</title>
-<link rel="stylesheet" href="thecss.css">
+<link rel="stylesheet" href="../css/thecss.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -13,16 +13,14 @@ body {
 </head>
 <body>
 
-<div class = "sidebar">
-  
+<?php
+include '../assets/headerbar.php';
+?>
+
+
+<div class = "login_box">
+
 </div>
-
-
-<h1>Website</h1>
-<p>This Is a fucking example For All The Pages.</p>
-
-
-
 
 </body>
 </html> 

@@ -61,3 +61,13 @@ clear: both;
     background-color: #0436a1;
     color: white;
 }
+
+.login_box{
+  border: 2px black;
+  border-radius: 20px;
+  margin-top: 20%;
+  margin-left: 35%;
+  width: 30%;
+  height:60%;
+  background-color: #97d2d6;
+}

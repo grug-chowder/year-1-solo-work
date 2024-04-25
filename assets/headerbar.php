@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Page Title</title>
-<link rel="stylesheet" href="thecss.css">
+<link rel="stylesheet" href="../css/thecss.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="initial-scale=1">
 <style>
