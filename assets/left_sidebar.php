@@ -20,6 +20,7 @@ body {
 
 <div class = "column left">
   <a href="mainpage.php" class = "button">MainPage </a> 
-  <a href="fuckyiuexample.php" class = "button">create2 </a> 
-  <a href="fuckyiuexample.php" class = "button">create3 </a> 
+  <a href="accountinfo.php" class = "button">AccountInfo </a> 
+  <a href="TransferFunds.php" class = "button">TransferFunds </a>
+  <a href="adminpage.php" class = "button">Adminpage</a> 
   </div>
