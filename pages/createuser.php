@@ -19,7 +19,7 @@ include '../assets/headerbar.php';
 
 
 <div class = "login_box">
-  <a href="createuser.php" class = "button">Sign Up</a> 
+
 </div>
 
 </body>
