@@ -43,6 +43,7 @@ include '../assets/headerbar.php';
         <label>Password</label>
         <input type="text" name="password" required>
     </div>
+    <input type="submit" value="Submit" name="Submit">
     </br>
 </div>
 
@@ -58,10 +59,10 @@ include '../assets/headerbar.php';
         $passwordhashed = password_hash($password);
 
         if ($verify == true) {
-        $sql = "INSERT INTO employee(first_name,middle_name,last_name,email,telephone,pin_hash,username,password_hash,salt,job_id,department_id) VALUES('$first_name','$middle_name','$last_name','$email','$phone_num','$pin','$username','$password','$salt','$job_id','$dep_id')";
+        $sql = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
         
             if ($conn->query($sql) === TRUE) {
-                echo "New employee created successfully";
+                echo "New account created successfully";
             } 
             else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
