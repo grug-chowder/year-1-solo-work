@@ -50,7 +50,7 @@ include '../assets/headerbar.php';
 
 
     if(array_key_exists('Create_Employee', $_POST)) {
-
+        $conn = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
         $username = $_POST["Username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
