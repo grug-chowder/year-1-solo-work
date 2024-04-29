@@ -45,7 +45,7 @@ include '../assets/headerbar.php';
 
 
     if(array_key_exists('Create_Employee', $_POST)) {
-        $conn = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
+        $db = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
         $username = $_POST["Username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
@@ -53,16 +53,15 @@ include '../assets/headerbar.php';
         $passwordhashed = password_hash($password);
 
         
-        $sql = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
+        $db = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
         
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) != False) {
             echo "New account created successfully";
         } 
-        else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        else{
+            ech0 "aaaaaaaahhhhhhhhh"
         }
-        
-        }
+
     ?>
 </body>
 </body>
