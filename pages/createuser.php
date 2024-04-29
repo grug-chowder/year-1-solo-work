@@ -42,19 +42,19 @@ include '../assets/headerbar.php';
 
 
     <?php
-
-        if(array_key_exists('Create_Employee', $_POST)) {
-            $db = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
+        echo "test1";
+        if(array_key_exists('Submit', $_POST)) {
+            $db = new SQLite3('../db/db.db');
             $username = $_POST["Username"];
             $email = $_POST["email"];
             $password = $_POST["password"];
 
             $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
-
+            echo "test";
             
-            $db = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
+            $sql = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
             
-            if ($conn->query($sql) != False) {
+            if ($db->query($sql) != False) {
                 echo "New account created successfully";
             } 
             else{
