@@ -39,30 +39,30 @@ include '../assets/headerbar.php';
     </div>
     <input type="submit" value="Submit" name="Submit">
     </br>
-</div>
-
-<?php
 
 
-    if(array_key_exists('Create_Employee', $_POST)) {
-        $db = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
-        $username = $_POST["Username"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+    <?php
 
-        $passwordhashed = password_hash($password);
+        if(array_key_exists('Create_Employee', $_POST)) {
+            $db = new SQLite3('C:\xampp\htdocs\web_application\db\sqlite.db');
+            $username = $_POST["Username"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
 
-        
-        $db = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
-        
-        if ($conn->query($sql) != False) {
-            echo "New account created successfully";
-        } 
-        else{
-            ech0 "aaaaaaaahhhhhhhhh"
+            $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
+
+            
+            $db = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
+            
+            if ($conn->query($sql) != False) {
+                echo "New account created successfully";
+            } 
+            else{
+                echo "aaaaaaaahhhhhhhhh";
+            }
         }
-
-    ?>
+        ?>
+</div>
 </body>
 </body>
 </html> 
