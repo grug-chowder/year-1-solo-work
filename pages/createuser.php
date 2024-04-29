@@ -21,13 +21,7 @@ include '../assets/headerbar.php';
 <div class = "login_box">
 <h3>New Employee</h3>
 
-<form action="" method="post">
-    <div class="row gy-4 mt-1">
-        
 
-
-    <form method="post">
-    <div class="form-outline mb-2">
 <form method="post">
     <div>
         <label>Username</label>
@@ -58,21 +52,17 @@ include '../assets/headerbar.php';
 
         $passwordhashed = password_hash($password);
 
-        if ($verify == true) {
+        
         $sql = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
         
-            if ($conn->query($sql) === TRUE) {
-                echo "New account created successfully";
-            } 
-            else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
+        if ($conn->query($sql) === TRUE) {
+            echo "New account created successfully";
+        } 
         else {
-            echo "Invalid Input";
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
-    }
-
+        
+        }
     ?>
 </body>
 </body>
