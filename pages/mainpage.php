@@ -21,6 +21,7 @@ body {
 
 <?php
 include '../assets/headerbar.php';
+include '../functions/redirect.php'
 ?>
 
 <div class = "row">
