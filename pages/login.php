@@ -32,12 +32,11 @@ if (session_id() == ""){
           <label>Password</label>
           <input type="text" name="password" required>
       </div>
-      <input type="submit" value="Submit" name="Sign in">
+      <input type="submit" value="Sign in" name="Submit">
       </br>
 
 
       <?php
-        echo"test3";
           if(array_key_exists('Submit', $_POST)) {
               $db = new SQLite3('../db/db.db');
               $username = $_POST["Username"];
@@ -46,11 +45,9 @@ if (session_id() == ""){
               $sql = "SELECT PasswordHash,UserId From User_Table where UserName = '$username'";
 
               $result = (($db->query($sql))->fetchArray());
-              echo"test2";
               if($result != False){
-                echo"test1";
                 if(password_verify($password, $result["PasswordHash"]) == True){
-                  echo"test";
+                  session_start();
                   $_SESSION["user_id"] = $result["UserId"];
                   header("Location: mainpage.php");
                   exit();

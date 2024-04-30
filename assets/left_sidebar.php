@@ -22,5 +22,6 @@ body {
   <a href="mainpage.php" class = "button">MainPage </a> 
   <a href="accountinfo.php" class = "button">AccountInfo </a> 
   <a href="TransferFunds.php" class = "button">TransferFunds </a>
+  <a href="createaccount.php" class = "button">CreateAccount</a>
   <a href="adminpage.php" class = "button">Adminpage</a> 
   </div>

@@ -20,8 +20,9 @@ body {
 <body>
 
 <?php
+session_start();
 include '../assets/headerbar.php';
-//Sinclude '../functions/redirect.php'
+include '../functions/redirect.php'
 ?>
 
 <div class = "row">

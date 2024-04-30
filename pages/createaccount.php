@@ -42,8 +42,8 @@ include '../functions/redirect.php'
             $db = new SQLite3('../db/db.db');
             $name = $_POST["name"];
             $currency = $_POST["currency"];
-            
-            $sql = "INSERT INTO Account_Table(Ballance,CurrencyId,UserId,Name) VALUES(0.00,(SELECT CurrencyId from Currency where name = '$currency'),'$_SESSION["user_id"]','$name')";
+            $userid = $_SESSION['user_id'];
+            $sql = "INSERT INTO Account_Table(Ballance,CurrencyId,UserId,Name) VALUES(0.00,(SELECT CurrencyId from Currency where name = '$currency'),'$userid','$name')";
             
             if ($db->query($sql) != False) {
                 header("Location: mainpage.php");
