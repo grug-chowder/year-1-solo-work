@@ -34,6 +34,7 @@ include '../functions/redirect.php'
         <label>Currency</label>
         <input type="text" name="currency" required>
     </div>
+    <input type="submit" value="Create Account" name="Submit">
     </br>
  
 
@@ -44,14 +45,22 @@ include '../functions/redirect.php'
             $name = $_POST["name"];
             $currency = $_POST["currency"];
             $userid = $_SESSION['user_id'];
-            $sql = "INSERT INTO Account_Table(Ballance,CurrencyId,UserId,Name) VALUES(0.00,(SELECT CurrencyId from Currency where name = '$currency'),'$userid','$name')";
-            
-            if ($db->query($sql) != False) {
-                header("Location: mainpage.php");
-                exit();
-            } 
+            $sql = "SELECT CurrencyId from Currency where name = '$currency'";
+            $thing = $db->query($sql);
+            $currecyid = $thing->fetchArray();
+            if ($currecyid != False) {
+                $currencyid = $currecyid["CurrencyId"];
+                $sql = "INSERT INTO Account_Table(Ballance,CurrencyId,UserId,Name) VALUES(0.00,$currencyid,'$userid','$name')";
+                if ($db->query($sql) != False) {
+                    header("Location: mainpage.php");
+                    exit();
+                } 
+                else{
+                    echo "invalid bucko try again mayhaps";
+                }
+            }
             else{
-                echo "invalid bucko try again mayhaps";
+                echo "incorrect bucko try again mayhaps";
             }
         }
         ?>
