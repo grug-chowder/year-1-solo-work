@@ -15,6 +15,9 @@ body {
 
 <?php
 include '../assets/headerbar.php';
+if (session_id() == ""){
+  session_start();
+}
 ?>
 
 <div class = "login_box">
@@ -29,11 +32,12 @@ include '../assets/headerbar.php';
           <label>Password</label>
           <input type="text" name="password" required>
       </div>
-      <input type="submit" value="Submit" name="Submit">
+      <input type="submit" value="Submit" name="Sign in">
       </br>
 
 
       <?php
+        echo"test3";
           if(array_key_exists('Submit', $_POST)) {
               $db = new SQLite3('../db/db.db');
               $username = $_POST["Username"];
@@ -42,12 +46,13 @@ include '../assets/headerbar.php';
               $sql = "SELECT PasswordHash,UserId From User_Table where UserName = '$username'";
 
               $result = (($db->query($sql))->fetchArray());
-
+              echo"test2";
               if($result != False){
+                echo"test1";
                 if(password_verify($password, $result["PasswordHash"]) == True){
-                  session_start();
-                  $_SESSION["user_id"] = $result["UserId"]
-                  header("Location: mainpage.php")
+                  echo"test";
+                  $_SESSION["user_id"] = $result["UserId"];
+                  header("Location: mainpage.php");
                   exit();
                 }
                 else{

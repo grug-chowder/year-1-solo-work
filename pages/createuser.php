@@ -55,6 +55,7 @@ include '../assets/headerbar.php';
             if ($db->query($sql) != False) {
                 header("Location: login.php");
                 echo "if you see this the redirect hasnt worked :(";
+                exit();
             } 
             else{
                 echo "invalid bucko try again mayhaps";
