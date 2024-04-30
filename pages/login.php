@@ -47,7 +47,7 @@ include '../assets/headerbar.php';
                 if(password_verify($password, $result["PasswordHash"]) == True){
                   session_start();
                   $_SESSION["user_id"] = $result["UserId"]
-
+                  header("Location: mainpage.php")
                   exit();
                 }
                 else{
