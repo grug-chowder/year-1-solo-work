@@ -14,6 +14,7 @@ body {
 <body>
 
 <?php
+session_start();
 include '../assets/headerbar.php';
 include '../functions/redirect.php'
 ?>
