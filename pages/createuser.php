@@ -52,13 +52,14 @@ include '../assets/headerbar.php';
             $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
             echo "test";
             
-            $sql = "INSERT INTO User Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
+            $sql = "INSERT INTO User_Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
             
             if ($db->query($sql) != False) {
-                echo "New account created successfully";
+                header("Location: login.php");
+                echo "if you see this the redirect hasnt worked :(";
             } 
             else{
-                echo "aaaaaaaahhhhhhhhh";
+                echo "invalid bucko try again mayhaps";
             }
         }
         ?>
