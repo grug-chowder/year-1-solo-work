@@ -42,7 +42,6 @@ include '../assets/headerbar.php';
 
 
     <?php
-        echo "test1";
         if(array_key_exists('Submit', $_POST)) {
             $db = new SQLite3('../db/db.db');
             $username = $_POST["Username"];
@@ -50,7 +49,6 @@ include '../assets/headerbar.php';
             $password = $_POST["password"];
 
             $passwordhashed = password_hash($password, PASSWORD_DEFAULT);
-            echo "test";
             
             $sql = "INSERT INTO User_Table(UserName,UserEmail,PasswordHash,adminbool) VALUES('$username','$email','$passwordhashed',0)";
             
