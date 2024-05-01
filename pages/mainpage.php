@@ -27,12 +27,12 @@ include '../functions/redirect.php'
 
 <div class = "row">
 
-
   <?php
   include '../assets/left_sidebar.php';
   ?>
 
   <div class = "column centre">
+    <h2>Your Accounts:</h2>
     <?php
     $db = new SQLite3('../db/db.db');
     $userid = $_SESSION["user_id"];
@@ -51,6 +51,7 @@ include '../functions/redirect.php'
   </div>
 
   <div class = "column right">
+  <h3>Current Exchange Rates:</h3>
   <?php
     $sql = "SELECT Togbp,name From Currency where CurrencyId > 1";
     $results = $db->query($sql);

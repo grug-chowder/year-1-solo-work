@@ -19,7 +19,7 @@ include '../assets/headerbar.php';
 
 
 <div class = "login_box">
-<h3>New Employee</h3>
+<h3>New User</h3>
 
 
 <form method="post">
@@ -37,7 +37,13 @@ include '../assets/headerbar.php';
         <label>Password</label>
         <input type="text" name="password" required>
     </div>
-    <input type="submit" value="Submit" name="Submit">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br></br>
+    <input type="submit" value="Sign Up" name="Submit">
     </br>
 
 

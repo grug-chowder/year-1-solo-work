@@ -31,6 +31,7 @@ session_start();
           <label>Password</label>
           <input type="text" name="password" required>
       </div>
+      </br></br></br></br></br></br></br></br></br>
       <input type="submit" value="Sign in" name="Submit">
       </br>
 

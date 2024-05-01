@@ -28,6 +28,7 @@ include '../functions/redirect.php'
   ?>
 
   <div class = "column centre">
+  <h2>Create New Account:</h2>
     <form method="post">
         <div>
             <label>Account Name</label>

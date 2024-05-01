@@ -34,6 +34,7 @@ include '../functions/redirect.php'
   ?>
 
   <div class = "column centre">
+  <h2>Transfer Funds Externaly:</h2>
 
   <form method="post">
     <div>

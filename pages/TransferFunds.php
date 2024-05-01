@@ -33,6 +33,7 @@ include '../functions/redirect.php'
   ?>
 
   <div class = "column centre">
+    <h2>Transfer Funds:</h2>
     <form method="post">
     <div>
         <label>Username Of Recipient</label>

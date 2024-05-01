@@ -33,6 +33,7 @@ include '../functions/redirect.php'
   ?>
 
 <div class = "column centre">
+  <h2>List Of Suspicious Transactions:</h2>
     <?php
     $db = new SQLite3('../db/db.db');
     $userid = $_SESSION["user_id"];

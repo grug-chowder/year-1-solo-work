@@ -22,7 +22,7 @@ h1{
   font-size: 40px;
   text-shadow: 2px 2px #250808;
 }
-p{
+p2{
   position: relative;
   left: -115px;
   top: 70px;
@@ -34,5 +34,5 @@ p{
 
 <div class = "headerbar">
   <h1>NDECT</h1>
-  <p>A Currency Transfer Service</p>
+  <p2>A Currency Transfer Service</p>
 </div>
