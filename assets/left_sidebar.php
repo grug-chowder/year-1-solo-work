@@ -24,6 +24,19 @@ body {
   <a href="TransferFunds.php" class = "button">Transfer Funds </a>
   <a href="TransferExternal.php" class = "button">Transfer External </a>
   <a href="createaccount.php" class = "button">Create Account</a>
-  <a href="adminpage.php" class = "button">Admin page</a> 
+  
+  <?php
+  $db = new SQLite3('../db/db.db');
+  $userid = $_SESSION["user_id"];
+  $sql = "SELECT adminbool from User_Table Where UserId = $userid";
+  $results = $db->query($sql);
+  $result = $results->fetchArray();
+  if($result["adminbool"] == 1){
+    echo"<a href='adminpage.php' class = 'button'>Admin page</a>"; 
+  }
+
+  ?>
   <a href="logout.php" class = "button">logout</a> 
+
+
   </div>
