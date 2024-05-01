@@ -33,9 +33,35 @@ include '../functions/redirect.php'
   ?>
 
   <div class = "column centre">
+    <?php
+    $db = new SQLite3('../db/db.db');
+    $userid = $_SESSION["user_id"];
+    $sql = "SELECT Account_Table.Ballance,Account_Table.Name,Currency.name From Account_Table
+    Join Currency On Account_Table.CurrencyId = Currency.CurrencyId 
+    Where UserId = '$userid'";
+    $results = $db->query($sql);
+    $result = $results->fetchArray();
+    while($result != False){
+      echo "<p>".$result["Name"]."  ".$result["Ballance"]." ".$result["name"]."</p>";
+
+      $result = $results->fetchArray();
+    }
+
+    ?>
   </div>
 
   <div class = "column right">
+  <?php
+    $sql = "SELECT Togbp,name From Currency where CurrencyId > 1";
+    $results = $db->query($sql);
+    $result = $results->fetchArray();
+    while($result != False){
+      echo "<p> gbp to ".$result["name"]."  1 - ".$result["Togbp"]."</p>";
+
+      $result = $results->fetchArray();
+    }
+
+    ?>
   </div>
 </div>
 
