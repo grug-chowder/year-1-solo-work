@@ -36,10 +36,20 @@ include '../functions/redirect.php'
     $db = new SQLite3('../db/db.db');
     $userid = $_SESSION["user_id"];
 
+    $sql = "SELECT AccountId From Account_Table Where UserId = $userid";
+    $results = $db->query($sql);
+    $result = $results->fetchArray();
+    $accountid = "(";
+    $accountid .= ($result["AccountId"]);
+    $result = $results->fetchArray();
+    while($result != False){
+      $accountid .= (",".$result["AccountId"]);
+      $result = $results->fetchArray();
+    }
+    $accountid .= ")";
     $sql = "SELECT * From Transaction_Table 
-    Where ReciverId = $userid OR senderid = $userid
-    ORDER by TIME DESC
-    ";
+    Where ReciverId IN $accountid OR senderid IN $accountid
+    ORDER by TIME DESC";
 
     $results = $db->query($sql);
     $result = $results->fetchArray();

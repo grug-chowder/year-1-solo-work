@@ -36,31 +36,21 @@ include '../functions/redirect.php'
 
     <form method="post">
     <div>
-        <label>Username Of Recipient</label>
-        <input type="text" name="Username" required>
+        <label>Ammount +/- </label>
+        <input type="text" name="Ammount" required>
     </div>
     </br>
     <div>
-        <label>AccountId Of Recipient</label>
+        <label>AccountName</label>
         <input type="text" name="AccountId" required>
     </div>
     </br>
     <div>
-        <label>AccountId Of Sender</label>
-        <input type="text" name="AccountIdSend" required>
-    </div>
-    </br>
-    <div>
-        <label>Amount</label>
-        <input type="text" name="Amount" required>
-    </div>
-    </br>
-    <div>
-        <label>Your Password</label>
+        <label>Password</label>
         <input type="text" name="Password" required>
     </div>
-    <input type="submit" value="Confirm" name="Submit">
-    </br>
+
+
 
 
     <?php
@@ -73,50 +63,75 @@ include '../functions/redirect.php'
             $password = $_POST["Password"];
             
             //verification
+            $sql = "SELECT User_Table.UserName From User_Table
+             Join Account_Table On Account_Table.UserId = User_Table.UserId
+             Where Account_Table.UserId = $accountidrec";
             
-            //processing
-            $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId = '$accountidrec'";
             $thing = $db->query($sql);
             $result = $thing->fetchArray();
-            $convertion = $result["Togbp"];
-            $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId ='$accountidsend'";
-            $thing = $db->query($sql);
-            $result = $thing->fetchArray();
-            $convertion = $convertion / $result["Togbp"];
+
+            if($result["UserName"] == $username){
+              $userid = $_SESSION['user_id'];
+              $sql = "SELECT PasswordHash From User_Table Where UserId = $userid";
+              $thing = $db->query($sql);
+              $result = $thing->fetchArray();
+              if(password_verify($password, $result["PasswordHash"]) == True){
+                    
+                    //processing
+                    $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId = '$accountidrec'";
+                    $thing = $db->query($sql);
+                    $result = $thing->fetchArray();
+                    $convertion = $result["Togbp"];
+                    $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId ='$accountidsend'";
+                    $thing = $db->query($sql);
+                    $result = $thing->fetchArray();
+                    $convertion = $convertion / $result["Togbp"];
 
 
-            
-            $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidsend'";
-            $results = ($db->query($sql));
-            $result = $results->fetchArray();
-            if ($result["Ballance"] - $amount >= 0){
-              $newval = $result["Ballance"] - $amount;
+                    
+                    $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidsend'";
+                    $results = ($db->query($sql));
+                    $result = $results->fetchArray();
+                    if ($result["Ballance"] - $amount >= 0){
+                      $newval = $result["Ballance"] - $amount;
 
-              $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidsend'";
-              
-              if ($db->query($sql)){
-                $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidrec'";
-                $results = ($db->query($sql));
-                $result = $results->fetchArray();
-                $newval = $result["Ballance"] + ($amount * $convertion);
-                $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidrec'";
+                      $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidsend'";
+                      
+                      if ($db->query($sql)){
+                        $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidrec'";
+                        $results = ($db->query($sql));
+                        $result = $results->fetchArray();
+                        $newval = $result["Ballance"] + ($amount * $convertion);
+                        $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidrec'";
 
+                        
+                        if($db->query($sql)){
+                          $time = time();
+                          $sql = "INSERT INTO Transaction_Table (Ammount,time,convertion,SenderId,ReciverId) Values('$amount','$time','$convertion','$accountidsend','$accountidrec')";
+                          if ($db->query($sql)){
+                            echo "success";
+                          }
+                        }
+                      }
+                      
+                    }
+                    else{
+                      echo "insuficient funds";
+                    }
+                    $sql = "UPDATE Account_Table SET Ballance = Ballance - '$amount' Where AccountId = '$accountidsend'";
                 
-                if($db->query($sql)){
-                  $time = time();
-                  $sql = "INSERT INTO Transaction_Table (Ammount,time,convertion,SenderId,ReciverId) Values('$amount','$time','$convertion','$accountidsend','$accountidrec')";
-                  if ($db->query($sql)){
-                    echo "success";
-                  }
-                }
               }
-              
+              else{
+                echo "incorect password";
+              }
             }
             else{
-              echo "insuficient funds";
+              echo "That Account Is Not Owned By The Specified User";
             }
-            $sql = "UPDATE Account_Table SET Ballance = Ballance - '$amount' Where AccountId = '$accountidsend'";
         }
+            
+            
+            
 
         ?>
         
