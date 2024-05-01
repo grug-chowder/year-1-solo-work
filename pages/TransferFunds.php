@@ -86,7 +86,7 @@ include '../functions/redirect.php'
 
 
             
-            $sql = "SELECT Ballance From Account_Table WHERE AccountId IN ('$accountidsend','$accountidrec')";
+            $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidsend'";
             $results = ($db->query($sql));
             $result = $results->fetchArray();
             if ($result["Ballance"] - $amount >= 0){
@@ -95,6 +95,8 @@ include '../functions/redirect.php'
               $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidsend'";
               
               if ($db->query($sql)){
+                $sql = "SELECT Ballance From Account_Table WHERE AccountId ='$accountidrec'";
+                $results = ($db->query($sql));
                 $result = $results->fetchArray();
                 $newval = $result["Ballance"] + ($amount * $convertion);
                 $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidrec'";
