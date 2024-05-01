@@ -19,10 +19,11 @@ body {
 </head>
 
 <div class = "column left">
-  <a href="mainpage.php" class = "button">MainPage </a> 
-  <a href="accountinfo.php" class = "button">AccountInfo </a> 
-  <a href="TransferFunds.php" class = "button">TransferFunds </a>
-  <a href="createaccount.php" class = "button">CreateAccount</a>
-  <a href="adminpage.php" class = "button">Adminpage</a> 
+  <a href="mainpage.php" class = "button">Main Page </a> 
+  <a href="accountinfo.php" class = "button">Account Info </a> 
+  <a href="TransferFunds.php" class = "button">Transfer Funds </a>
+  <a href="TransferExternal.php" class = "button">Transfer External </a>
+  <a href="createaccount.php" class = "button">Create Account</a>
+  <a href="adminpage.php" class = "button">Admin page</a> 
   <a href="logout.php" class = "button">logout</a> 
   </div>

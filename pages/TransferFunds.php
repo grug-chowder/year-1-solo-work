@@ -33,24 +33,33 @@ include '../functions/redirect.php'
   ?>
 
   <div class = "column centre">
-
     <form method="post">
     <div>
-        <label>Ammount +/- </label>
-        <input type="text" name="Ammount" required>
+        <label>Username Of Recipient</label>
+        <input type="text" name="Username" required>
     </div>
     </br>
     <div>
-        <label>AccountName</label>
+        <label>AccountId Of Recipient</label>
         <input type="text" name="AccountId" required>
     </div>
     </br>
     <div>
-        <label>Password</label>
+        <label>AccountId Of Sender</label>
+        <input type="text" name="AccountId" required>
+    </div>
+    </br>
+    <div>
+        <label>Amount</label>
+        <input type="text" name="Amount" required>
+    </div>
+    </br>
+    <div>
+        <label>Your Password</label>
         <input type="text" name="Password" required>
     </div>
-
-
+    <input type="submit" value="Confirm" name="Submit">
+    </br>
 
 
     <?php
