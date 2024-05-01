@@ -36,21 +36,20 @@ include '../functions/redirect.php'
     $db = new SQLite3('../db/db.db');
     $userid = $_SESSION["user_id"];
 
-    $sql = "SELECT Transaction_Table.Ammount,Transaction_Table.time,Transaction_Table.convertion,User_table.UserName From Transaction_Table 
-    Join Account_Table on Account_Table.AccountId = Transaction_Table.SenderId
-    Join User_Table on User_Table.UserId = Account_Table.UserId
-    Where ReciverId = $userid
-    UNION
-    SELECT Transaction_Table.Ammount,Transaction_Table.time,Transaction_Table.convertion,User_table.UserName From Transaction_Table 
-    Join Account_Table on Account_Table.AccountId = Transaction_Table.ReciverId
-    Join User_Table on User_Table.UserId = Account_Table.UserId
-    Where SenderId = $userid
+    $sql = "SELECT * From Transaction_Table 
+    Where ReciverId = $userid OR senderid = $userid
+    ORDER by TIME DESC
     ";
 
     $results = $db->query($sql);
     $result = $results->fetchArray();
     while($result != False){
-      //echo "<p>".$result["Name"]."  ".$result["Ballance"]." ".$result["name"]."</p>";
+      if($result["SenderId"] == $userid){
+        echo "<p style='color:red;'> -".$result["Ammount"]." From Account Id ".$result["SenderId"]." To Account Id ".$result["ReciverId"]." at time ". date("Y-m-d\TH:i:s\Z",$result["time"])."</p>";
+      } 
+      else{
+        echo "<p style='color:green;'> +".($result["Ammount"]*$result["convertion"])." From Account Id ".$result["SenderId"]." To Account Id ".$result["ReciverId"]." at time ". date("Y-m-d\TH:i:s\Z",$result["time"])."</p>";
+      }
 
       $result = $results->fetchArray();
     }

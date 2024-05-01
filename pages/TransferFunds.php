@@ -75,32 +75,37 @@ include '../functions/redirect.php'
             //verification
             
             //processing
-            $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId IN ('$accountidsend','$accountidrec')";
+            $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId = '$accountidrec'";
             $thing = $db->query($sql);
             $result = $thing->fetchArray();
             $convertion = $result["Togbp"];
+            $sql = "SELECT Currency.Togbp From Account_Table Join Currency ON Currency.CurrencyId = Account_Table.CurrencyId WHERE Account_Table.AccountId ='$accountidsend'";
+            $thing = $db->query($sql);
             $result = $thing->fetchArray();
             $convertion = $convertion / $result["Togbp"];
-            $convertedamount = $amount * $convertion;
 
-            Print_r(gettype($amount));
+
             
-            $sql = "SELECT Ballance From Account_Table WHERE AccountId = '$accountidsend'";
-            $result = (($db->query($sql))->fetchArray());
+            $sql = "SELECT Ballance From Account_Table WHERE AccountId IN ('$accountidsend','$accountidrec')";
+            $results = ($db->query($sql));
+            $result = $results->fetchArray();
             if ($result["Ballance"] - $amount >= 0){
-              $sql = "UPDATE Account_Table SET Ballance = (Ballance - $amount) Where AccountId = '$accountidsend'";
-              $result = (($db->query($sql))->fetchArray());
+              $newval = $result["Ballance"] - $amount;
 
-              Print_r($accountidrec);
+              $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidsend'";
               
-              if ($result != FALSE){
-                $sql = "UPDATE Account_Table SET Ballance = Ballance + '$convertedamount' Where AccountId = '$accountidrec'";
-                $result = (($db->query($sql))->fetchArray());
+              if ($db->query($sql)){
+                $result = $results->fetchArray();
+                $newval = $result["Ballance"] + ($amount * $convertion);
+                $sql = "UPDATE Account_Table SET Ballance = $newval Where AccountId = '$accountidrec'";
+
                 
-                if($result != FALSE){
+                if($db->query($sql)){
                   $time = time();
                   $sql = "INSERT INTO Transaction_Table (Ammount,time,convertion,SenderId,ReciverId) Values('$amount','$time','$convertion','$accountidsend','$accountidrec')";
-                  echo "success";
+                  if ($db->query($sql)){
+                    echo "success";
+                  }
                 }
               }
               
@@ -110,7 +115,7 @@ include '../functions/redirect.php'
             }
             $sql = "UPDATE Account_Table SET Ballance = Ballance - '$amount' Where AccountId = '$accountidsend'";
         }
-        Print_r($convertion);
+
         ?>
         
   </div>
