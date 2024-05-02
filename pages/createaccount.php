@@ -25,6 +25,7 @@ include '../functions/redirect.php'
 
   <?php
   include '../assets/left_sidebar.php';
+  $db = new SQLite3('../db/db.db');
   ?>
 
   <div class = "column centre">
@@ -47,7 +48,6 @@ include '../functions/redirect.php'
 
         <?php
             if(array_key_exists('Submit', $_POST)) {
-                $db = new SQLite3('../db/db.db');
                 $name = $_POST["name"];
                 $currency = $_POST["currency"];
                 $userid = $_SESSION['user_id'];
