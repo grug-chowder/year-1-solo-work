@@ -79,7 +79,7 @@ include '../functions/redirect.php'
             
             $thing = $db->query($sql);
             $result = $thing->fetchArray();
-
+            
             if($result["UserName"] == $username){
               $userid = $_SESSION['user_id'];
               $sql = "SELECT PasswordHash From User_Table Where UserId = $userid";

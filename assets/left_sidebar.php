@@ -34,6 +34,7 @@ body {
   if($result["adminbool"] == 1){
     echo"<a href='adminpage.php' class = 'button'>Admin page</a>"; 
   }
+  $db->close();
 
   ?>
   <a href="logout.php" class = "button">logout</a> 
