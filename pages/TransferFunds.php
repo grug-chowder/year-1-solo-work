@@ -47,7 +47,7 @@ include '../functions/redirect.php'
     </br>
     <div>
         <label>AccountId Of Sender</label>
-        <input type="text" name="AccountId" required>
+        <input type="text" name="AccountIdSend" required>
     </div>
     </br>
     <div>
